@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {%block title%}Prompts{% endblock %}
+<!-- Story Prompts Form -->
+{% block content %}
+<form
+  action="/story"
+  method="POST"
+  class="form-group">
+  {% for prompt in prompts %}
+  <div class="row mb-3">
+    <label
+      for="{{prompt}}"
+      class="col-sm-2 form-label"
+      >{{prompt}}</label
+    >
+    <div class="col-sm-6">
+      <input
+        type="text"
+        name="{{prompt}}"
+        class="form-control" />
+    </div>
+  </div>
+  {% endfor %}
+  <button
+    type="submit"
+    class="btn btn-primary mt-2">
+    Submit
+  </button>
+</form>
+{% endblock %}

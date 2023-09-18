@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {%block title%}Mad Libs{% endblock %} {%block
+content%}
+<!-- Select Story Radio -->
+<form action="/prompts">
+  <div class="form-check">
+    <input
+      class="form-check-input story1"
+      type="radio"
+      name="story_selection"
+      id="story1"
+      value="story1" />
+    <label
+      class="form-check-label"
+      for="story1">
+      Story 1
+    </label>
+  </div>
+  <div class="form-check">
+    <input
+      class="form-check-input story2"
+      type="radio"
+      name="story_selection"
+      id="story2"
+      value="story2" />
+    <label
+      class="form-check-label"
+      for="story2">
+      Story 2
+    </label>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary mt-2">
+    Submit
+  </button>
+</form>
+{% endblock %}
