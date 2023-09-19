@@ -3,7 +3,6 @@
 {% block content %}
 <form
   action="/story"
-  method="POST"
   class="form-group">
   {% for prompt in prompts %}
   <div class="row mb-3">
@@ -22,6 +21,7 @@
   {% endfor %}
   <button
     type="submit"
+    value="submit"
     class="btn btn-primary mt-2">
     Submit
   </button>

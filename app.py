@@ -19,31 +19,28 @@ def prompts():
 
     if selected_story == "story1":
         prompts = story1.prompts
-        return render_template("prompts.html", prompts=prompts)
 
     elif selected_story == "story2":
         prompts = story2.prompts
-        return render_template("prompts.html", prompts=prompts)
 
     else:
         return "Please select a story"
     
 
+    return render_template("prompts.html", prompts=prompts, story=selected_story)
+        
 
-@app.route('/story',methods=["POST"])
+
+@app.route('/story')
 def show_story():
-
-    selected_story = request.form.get("story_selection")
-    print("Selected Story:", selected_story)
+    selected_story=request.args.get("story_selection")
     if selected_story == "story1":
-        story = story1
+        selected_story = story1
 
     elif selected_story == "story2":
-        story = story2
+        selected_story = story2
 
-    else:
-        return "Invalid story selection"
         
-    answers={prompt:request.form[prompt] for prompt in story.prompts} 
-    story.template = story.generate(answers)
-    return render_template("story.html", template=story.template)
+    answers={prompt:request.args.get(prompt) for prompt in selected_story.prompts} 
+    story_text = selected_story.generate(answers)
+    return render_template("story.html", template=story_text)
