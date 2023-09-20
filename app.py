@@ -31,9 +31,9 @@ def prompts():
         
 
 
-@app.route('/story')
+@app.route('/story', methods=['POST'])
 def show_story():
-    selected_story=request.args.get("story_selection")
+    selected_story=request.form.get("story_selection")
     if selected_story == "story1":
         selected_story = story1
 
@@ -41,6 +41,8 @@ def show_story():
         selected_story = story2
 
         
-    answers={prompt:request.args.get(prompt) for prompt in selected_story.prompts} 
-    story_text = selected_story.generate(answers)
+    answers={prompt:request.form["prompt"] for prompt in story1.prompts} 
+    story_text = story1.generate(answers)
     return render_template("story.html", template=story_text)
+
+# i'm unsure of why the dictionary comprehension isn't looping through all of the prompts.  and the template renders when i hard code the instance of the class but not when i use variable.  
