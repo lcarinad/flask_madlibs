@@ -40,9 +40,10 @@ def show_story():
     elif selected_story == "story2":
         selected_story = story2
 
+
         
-    answers={prompt:request.form["prompt"] for prompt in story1.prompts} 
-    story_text = story1.generate(answers)
-    return render_template("story.html", template=story_text)
+    answers={prompt:request.form["prompt"] for prompt in selected_story.prompts} 
+    story_text = story.generate(answers)
+    return render_template("story.html", story=selected_story, template=story_text)
 
 # i'm unsure of why the dictionary comprehension isn't looping through all of the prompts.  and the template renders when i hard code the instance of the class but not when i use variable.  
